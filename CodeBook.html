@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Code Book</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h2>Code Book</h2>
+
+<h3>Raw Data</h3>
+
+<p>The raw data is contained in the UCI HAR Dataset directory. See the README.txt file within that directory for a full description of these files.</p>
+
+<h3>Tidy Data Files</h3>
+
+<p>There are 2 files produced by running run_analysis.R on the UCI HAR Dataset. In each file, the units of all numeric variables are normalized and bounded within [-1,1].</p>
+
+<h4>tidy1.txt</h4>
+
+<p>The first tidy data set in the project description. The test and training data sets from the raw data are merged and combined with subject and activity data (see the code book). The granularity is the same as the raw data i.e. one feature vector from the training or test raw data sets (see the README.txt file from within the UCI HAR Dataset for more information). A subset of metrics from the raw data are included in this tidy set. See below for variable definitions.</p>
+
+<h4>tidy2.txt</h4>
+
+<p>The second tidy data set in the project description. Metrics from the first tidy data set are averaged by activity and subject. See below for variable definitions.</p>
+
+<h3>Data Cleaning Steps</h3>
+
+<p>The following steps were taken to clean the data:</p>
+
+<ul>
+<li>Append each of the raw data sets (test and train) with the correspoinding activty and subject IDs</li>
+<li>Combine theses 2 resultant sets</li>
+<li>Remove numeric variables that did not measure mean() or std() </li>
+<li>Tidy the variable names by making them lowercase and removing punctuation (note that I kept abbreviations due to potentially very long variable names)</li>
+<li>Replace activity IDs with activity descriptions</li>
+</ul>
+
+<p>The result of the above steps was written to tidy1.txt. These results were then averaged by activty and subject then written to tidy2.txt.</p>
+
+<p>See the comments in run_analysis.R for more details.</p>
+
+<h3>Variebles used in tidy1.txt and tidy2.txt</h3>
+
+<p>1   subjectid: ID of the subject (person performing activities) in the experiment</p>
+
+<p>2   activity: Description of the activity understaken by the subject</p>
+
+<p>3   tbodyaccmeanx: Time domain  body  accelerometer  reading  in the  x  dimension  (mean)</p>
+
+<p>4   tbodyaccmeany: Time domain  body  accelerometer  reading  in the  y  dimension  (mean)</p>
+
+<p>5   tbodyaccmeanz: Time domain  body  accelerometer  reading  in the  z  dimension  (mean)</p>
+
+<p>6   tbodyaccstdx: Time domain  body  accelerometer  reading  in the  x  dimension  (standard deviation)</p>
+
+<p>7   tbodyaccstdy: Time domain  body  accelerometer  reading  in the  y  dimension  (standard deviation)</p>
+
+<p>8   tbodyaccstdz: Time domain  body  accelerometer  reading  in the  z  dimension  (standard deviation)</p>
+
+<p>9   tgravityaccmeanx: Time domain  gravity  accelerometer  reading  in the  x  dimension  (mean)</p>
+
+<p>10  tgravityaccmeany: Time domain  gravity  accelerometer  reading  in the  y  dimension  (mean)</p>
+
+<p>11  tgravityaccmeanz: Time domain  gravity  accelerometer  reading  in the  z  dimension  (mean)</p>
+
+<p>12  tgravityaccstdx: Time domain  gravity  accelerometer  reading  in the  x  dimension  (standard deviation)</p>
+
+<p>13  tgravityaccstdy: Time domain  gravity  accelerometer  reading  in the  y  dimension  (standard deviation)</p>
+
+<p>14  tgravityaccstdz: Time domain  gravity  accelerometer  reading  in the  z  dimension  (standard deviation)</p>
+
+<p>15  tbodyaccjerkmeanx: Time domain  body  accelerometer  jerk  reading  in the  x  dimension  (mean)</p>
+
+<p>16  tbodyaccjerkmeany: Time domain  body  accelerometer  jerk  reading  in the  y  dimension  (mean)</p>
+
+<p>17  tbodyaccjerkmeanz: Time domain  body  accelerometer  jerk  reading  in the  z  dimension  (mean)</p>
+
+<p>18  tbodyaccjerkstdx: Time domain  body  accelerometer  jerk  reading  in the  x  dimension  (standard deviation)</p>
+
+<p>19  tbodyaccjerkstdy: Time domain  body  accelerometer  jerk  reading  in the  y  dimension  (standard deviation)</p>
+
+<p>20  tbodyaccjerkstdz: Time domain  body  accelerometer  jerk  reading  in the  z  dimension  (standard deviation)</p>
+
+<p>21  tbodygyromeanx: Time domain  body  gyroscope  reading  in the  x  dimension  (mean)</p>
+
+<p>22  tbodygyromeany: Time domain  body  gyroscope  reading  in the  y  dimension  (mean)</p>
+
+<p>23  tbodygyromeanz: Time domain  body  gyroscope  reading  in the  z  dimension  (mean)</p>
+
+<p>24  tbodygyrostdx: Time domain  body  gyroscope  reading  in the  x  dimension  (standard deviation)</p>
+
+<p>25  tbodygyrostdy: Time domain  body  gyroscope  reading  in the  y  dimension  (standard deviation)</p>
+
+<p>26  tbodygyrostdz: Time domain  body  gyroscope  reading  in the  z  dimension  (standard deviation)</p>
+
+<p>27  tbodygyrojerkmeanx: Time domain  body  gyroscope  jerk  reading  in the  x  dimension  (mean)</p>
+
+<p>28  tbodygyrojerkmeany: Time domain  body  gyroscope  jerk  reading  in the  y  dimension  (mean)</p>
+
+<p>29  tbodygyrojerkmeanz: Time domain  body  gyroscope  jerk  reading  in the  z  dimension  (mean)</p>
+
+<p>30  tbodygyrojerkstdx: Time domain  body  gyroscope  jerk  reading  in the  x  dimension  (standard deviation)</p>
+
+<p>31  tbodygyrojerkstdy: Time domain  body  gyroscope  jerk  reading  in the  y  dimension  (standard deviation)</p>
+
+<p>32  tbodygyrojerkstdz: Time domain  body  gyroscope  jerk  reading  in the  z  dimension  (standard deviation)</p>
+
+<p>33  tbodyaccmagmean: Time domain  body  accelerometer  reading  (mean)</p>
+
+<p>34  tbodyaccmagstd: Time domain  body  accelerometer  reading  (standard deviation)</p>
+
+<p>35  tgravityaccmagmean: Time domain  gravity  accelerometer  reading  (mean)</p>
+
+<p>36  tgravityaccmagstd: Time domain  gravity  accelerometer  reading  (standard deviation)</p>
+
+<p>37  tbodyaccjerkmagmean: Time domain  body  accelerometer  jerk  reading  (mean)</p>
+
+<p>38  tbodyaccjerkmagstd: Time domain  body  accelerometer  jerk  reading  (standard deviation)</p>
+
+<p>39  tbodygyromagmean: Time domain  body  gyroscope  reading  (mean)</p>
+
+<p>40  tbodygyromagstd: Time domain  body  gyroscope  reading  (standard deviation)</p>
+
+<p>41  tbodygyrojerkmagmean: Time domain  body  gyroscope  jerk  reading  (mean)</p>
+
+<p>42  tbodygyrojerkmagstd: Time domain  body  gyroscope  jerk  reading  (standard deviation)</p>
+
+<p>43  fbodyaccmeanx: Frequency domain  body  accelerometer  reading  in the  x  dimension  (mean)</p>
+
+<p>44  fbodyaccmeany: Frequency domain  body  accelerometer  reading  in the  y  dimension  (mean)</p>
+
+<p>45  fbodyaccmeanz: Frequency domain  body  accelerometer  reading  in the  z  dimension  (mean)</p>
+
+<p>46  fbodyaccstdx: Frequency domain  body  accelerometer  reading  in the  x  dimension  (standard deviation)</p>
+
+<p>47  fbodyaccstdy: Frequency domain  body  accelerometer  reading  in the  y  dimension  (standard deviation)</p>
+
+<p>48  fbodyaccstdz: Frequency domain  body  accelerometer  reading  in the  z  dimension  (standard deviation)</p>
+
+<p>49  fbodyaccjerkmeanx: Frequency domain  body  accelerometer  jerk  reading  in the  x  dimension  (mean)</p>
+
+<p>50  fbodyaccjerkmeany: Frequency domain  body  accelerometer  jerk  reading  in the  y  dimension  (mean)</p>
+
+<p>51  fbodyaccjerkmeanz: Frequency domain  body  accelerometer  jerk  reading  in the  z  dimension  (mean)</p>
+
+<p>52  fbodyaccjerkstdx: Frequency domain  body  accelerometer  jerk  reading  in the  x  dimension  (standard deviation)</p>
+
+<p>53  fbodyaccjerkstdy: Frequency domain  body  accelerometer  jerk  reading  in the  y  dimension  (standard deviation)</p>
+
+<p>54  fbodyaccjerkstdz: Frequency domain  body  accelerometer  jerk  reading  in the  z  dimension  (standard deviation)</p>
+
+<p>55  fbodygyromeanx: Frequency domain  body  gyroscope  reading  in the  x  dimension  (mean)</p>
+
+<p>56  fbodygyromeany: Frequency domain  body  gyroscope  reading  in the  y  dimension  (mean)</p>
+
+<p>57  fbodygyromeanz: Frequency domain  body  gyroscope  reading  in the  z  dimension  (mean)</p>
+
+<p>58  fbodygyrostdx: Frequency domain  body  gyroscope  reading  in the  x  dimension  (standard deviation)</p>
+
+<p>59  fbodygyrostdy: Frequency domain  body  gyroscope  reading  in the  y  dimension  (standard deviation)</p>
+
+<p>60  fbodygyrostdz: Frequency domain  body  gyroscope  reading  in the  z  dimension  (standard deviation)</p>
+
+<p>61  fbodyaccmagmean: Frequency domain  body  accelerometer  reading  (mean)</p>
+
+<p>62  fbodyaccmagstd: Frequency domain  body  accelerometer  reading  (standard deviation)</p>
+
+<p>63  fbodybodyaccjerkmagmean: Frequency domain  body  accelerometer  jerk  reading  (mean)</p>
+
+<p>64  fbodybodyaccjerkmagstd: Frequency domain  body  accelerometer  jerk  reading  (standard deviation)</p>
+
+<p>65  fbodybodygyromagmean: Frequency domain  body  gyroscope  reading  (mean)</p>
+
+<p>66  fbodybodygyromagstd: Frequency domain  body  gyroscope  reading  (standard deviation)</p>
+
+<p>67  fbodybodygyrojerkmagmean: Frequency domain  body  gyroscope  jerk  reading  (mean)</p>
+
+<p>68  fbodybodygyrojerkmagstd: Frequency domain  body  gyroscope  jerk  reading  (standard deviation)</p>
+
+</body>
+
+</html>
+

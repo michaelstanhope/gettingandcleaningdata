@@ -23,4 +23,7 @@ The second tidy data set in the project description. Metrics from the first tidy
 #### CodeBook.md
 A code book describing the variables, the data and the transformations that was performed to clean up the above data.
 
+#### makeCodeBook.R
+A little script that I wrote to help generate variable descriptions for the code book.
+
 #### README.md
